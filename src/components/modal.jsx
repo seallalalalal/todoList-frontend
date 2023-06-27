@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import "./modal.css";
 
 export default function Modal({ open, onClose, children, ...props }) {

@@ -1,7 +1,9 @@
 import React from "react";
-import List from "./widgets/List";
-import Modal from "./widgets/modal";
+import List from "./components/list";
+import Modal from "./components/modal";
 import { useState } from "react";
+import TaskDetail from "./components/taskForm";
+import "./general.css";
 export default function App() {
   const [isOpen, setIsOpen] = React.useState();
   const [value, setValue] = useState("");
@@ -9,26 +11,16 @@ export default function App() {
     setValue(e.target.value);
   };
 
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div>
       <List />
       <button onClick={() => setIsOpen(true)}>Open Modal</button>
       <Modal onClose={() => setIsOpen(false)} open={isOpen}>
-        {console.log(isOpen)}
-        <input
-          value={value}
-          onChange={onTyping}
-          placeholder="task name"
-        ></input>
-        <button
-          onClick={() => {
-            setIsOpen(false);
-            //addTask();
-          }}
-        >
-          Confirm
-        </button>
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
+        <TaskDetail taskName={value} onTyping={onTyping} onClose={onClose} />
       </Modal>
     </div>
   );

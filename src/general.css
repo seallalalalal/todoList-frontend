@@ -1,0 +1,30 @@
+.primary-button {
+  background-color: rgb(0, 119, 255);
+  color: #f7f7f7;
+  border: 0;
+  outline: 1px;
+}
+
+.secondary-button {
+  background-color: #fff;
+  border: 2px solid #ddd;
+}
+
+button {
+  padding: 5px;
+  border-radius: 8px;
+  min-height: 30px;
+}
+
+.bubble {
+  border: none;
+  background-color: #eee;
+  border-radius: 15%;
+  width: fit-content;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  line-height: 20px;
+}

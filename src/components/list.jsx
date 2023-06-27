@@ -38,20 +38,23 @@ export default function List() {
   return (
     <>
       <Control onAdd={onAdd} />
-      <button>New Task</button>
       {list.map((item) => (
-        <div key={item.taskName}>
-          <input
-            type="checkbox"
-            value={item.name}
-            onChange={() => onComplete(item)}
-            key={item.taskName}
-          />
-          <label>{item.taskName}</label>
-        </div>
+        <Task item={item} onComplete={onComplete} />
       ))}
     </>
   );
 }
 
-function Task() {}
+function Task({ item, onComplete }) {
+  return (
+    <div key={item.taskName}>
+      <input
+        type="checkbox"
+        value={item.name}
+        onChange={() => onComplete(item)}
+        key={item.taskName}
+      />
+      <label>{item.taskName}</label>
+    </div>
+  );
+}
