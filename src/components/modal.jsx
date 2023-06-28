@@ -3,7 +3,6 @@ import "./modal.css";
 
 export default function Modal({ open, onClose, children, ...props }) {
   const modalRef = useRef(null);
-  console.log(open);
 
   var modalClass;
   if (!open) {

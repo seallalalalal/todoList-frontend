@@ -1,12 +1,11 @@
 import React from "react";
 
 const TASK = {
-  id: "uuid",
-  name: "String",
-  owner: "User",
-  due: "Date",
-  description: "String",
-  comment: ["Comment"],
+  name: "default String",
+  owner: "default User",
+  due: "default Date",
+  description: "default String",
+  comment: ["default Comment"],
 };
 
 const MOCK = {
@@ -17,7 +16,7 @@ const MOCK = {
       owner: "User",
       due: "2020/03/10 01:11",
       description: "String",
-      comment: "Comment",
+      comment: ["Comment"],
     },
     {
       id: "uuid",
@@ -26,7 +25,7 @@ const MOCK = {
       due: "2020/03/10 01:11",
       description:
         "veryveryveryveryverylongveryveryveryveryverylongveryveryveryveryverylongveryveryveryveryverylong",
-      comment: "Comment",
+      comment: ["Comment", "Comment", "Comment", "Comment"],
     },
   ],
 };

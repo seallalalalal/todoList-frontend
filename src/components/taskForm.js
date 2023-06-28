@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./taskForm.css";
 import { BsCalendarEvent } from "react-icons/bs";
 import DatePicker from "react-datepicker";
@@ -8,19 +8,36 @@ import {
   BiCalendarEdit, //other
 } from "react-icons/bi";
 import { AiOutlineUser } from "react-icons/ai";
+import { TASK } from "../data/task";
 
-export default function TaskForm({ taskName, onTyping, onClose, onAdd }) {
+var newTask = JSON.parse(JSON.stringify(TASK));
+
+export default function TaskForm({ onClose, onAdd, tasks }) {
   const pickDate = (date) => {
     //TODO: format date
     //TODO: set value
   };
+
+  const [taskName, setTaskName] = React.useState("");
+
+  const abortTask = () => {};
+  const clearTask = () => {
+    setTaskName("");
+    newTask = JSON.parse(JSON.stringify(TASK));
+  };
+
+  useEffect(() => {
+    newTask.name = taskName;
+  }, [taskName]);
 
   return (
     <>
       <form className="task-form">
         <input
           value={taskName}
-          onChange={onTyping}
+          onChange={(e) => {
+            setTaskName(e.target.value);
+          }}
           placeholder="task name"
           className="input-box task-form__name"
         />
@@ -31,6 +48,9 @@ export default function TaskForm({ taskName, onTyping, onClose, onAdd }) {
             className="input-box bubble"
             onClick={() => {
               //TODO: get Users API
+            }}
+            onChange={(e) => {
+              newTask.owner = e.target.value;
             }}
           >
             <option>Andy</option>
@@ -56,6 +76,9 @@ export default function TaskForm({ taskName, onTyping, onClose, onAdd }) {
           <textarea
             className="input-box textarea"
             placeholder="Add Description"
+            onChange={(e) => {
+              newTask.description = e.target.value;
+            }}
           />
         </div>
 
@@ -63,10 +86,11 @@ export default function TaskForm({ taskName, onTyping, onClose, onAdd }) {
           {" "}
           <button
             className="primary-button"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               onClose();
-              //TODO: addTask();
-              //TODO: clear value
+              onAdd(newTask);
+              clearTask();
             }}
           >
             Confirm
@@ -87,7 +111,6 @@ export default function TaskForm({ taskName, onTyping, onClose, onAdd }) {
 }
 
 function Bubble({ type, text, Icon, onClick }, ...props) {
-  console.log(Icon);
   return (
     <button
       className="bubble"
